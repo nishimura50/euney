@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Classifier</title>
+    <style>
+        /* General Reset */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        /* Container Styling */
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        /* Heading */
+        .container h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+
+        /* Button Styling */
+        .container button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .container button:hover {
+            background-color: #45a049;
+        }
+
+        /* Text Result */
+        .container p {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Age Classifier</h1>
+        <button onclick="classifyAge()">Start Classification</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+       function classifyAge() {
+            let continueClassification = true;
+
+            while (continueClassification) {
+                let ageInput;
+                while (true) {
+                    ageInput = prompt("Enter your age");
+                    if (ageInput === null) {
+                        alert("No input given. Exiting.");
+                        return;
+                    }
+
+                    ageInput = parseInt(ageInput, 10);
+                    if (!isNaN(ageInput) && ageInput >= 0) {
+                        break;
+                    }
+                    alert("Invalid input. Please enter a valid age.");
+                }
+
+                let ageGroup;
+                if (ageInput >= 0 && ageInput<= 12 ) {
+                    ageGroup = "Child";
+                } else if (ageInput >= 13 && ageInput <= 19) {
+                    ageGroup = "Teenager";
+                } else if (ageInput >=20 && ageInput <= 64) {
+                    ageGroup = "Adult";
+                } else  {
+                    ageGroup = "Senior";
+                }
+
+                alert(`Age: ${ageInput}\nCategory: ${ageGroup}`);
+
+                const userChoice = prompt("Do  you want to classify another age? Yes or No:").toLowerCase();
+                if (userChoice !== "yes") {
+                    continueClassification = false;
+                    alert("Thank you for using our program!:)");
+                }
+            }
+        }
+    </script>
+</body>
+</html>
